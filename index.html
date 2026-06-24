@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sentilytics — Sentiment Analysis</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="w">
+
+    <!-- ── HERO ── -->
+    <header class="hero">
+      <div class="eyebrow">Emotional intelligence for text</div>
+      <h1 class="title">Sentily<em>tics</em></h1>
+      <p class="tagline">Reveal the feeling beneath the words</p>
+      <div class="rule"></div>
+    </header>
+
+    <!-- ── MAIN ── -->
+    <main class="main">
+
+      <!-- Input Card -->
+      <div class="card">
+        <div class="lbl">Your text</div>
+
+        <div class="ta-wrap">
+          <textarea
+            id="inp"
+            placeholder="Write something — a thought, a review, a paragraph…"
+            maxlength="3000"
+            oninput="onChar()"
+          ></textarea>
+          <span class="char" id="chr">0 / 3000</span>
+        </div>
+
+        <div class="actions">
+          <button class="primary" id="abtn" onclick="analyse()">Analyse</button>
+          <button class="ghost" onclick="clearAll()">Clear</button>
+        </div>
+
+        <div class="lbl" style="margin-bottom:.55rem;">Try an example</div>
+        <div class="chips">
+          <span class="chip" onclick="loadEx(0)">Joyful review</span>
+          <span class="chip" onclick="loadEx(1)">Frustrated complaint</span>
+          <span class="chip" onclick="loadEx(2)">Neutral report</span>
+          <span class="chip" onclick="loadEx(3)">Mixed feelings</span>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div class="loading" id="ld">
+        <div class="spinner"></div>
+        <div class="loading-text">Reading between the lines…</div>
+      </div>
+
+      <!-- Error -->
+      <div class="err" id="errbox"></div>
+
+      <!-- Results -->
+      <div class="results" id="res">
+
+        <!-- Verdict Card -->
+        <div class="card">
+          <div class="lbl">Overall tone</div>
+          <div class="verdict-row">
+            <div class="orb op" id="orb">🌿</div>
+            <div class="vt">
+              <div class="vlbl">Reading</div>
+              <div class="vmain" id="vmain">—</div>
+              <div class="vsub"  id="vsub">—</div>
+            </div>
+            <div class="sbox">
+              <div class="snum" id="snum">—</div>
+              <div class="slbl">Score</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Breakdown Card -->
+        <div class="card">
+          <div class="lbl">Emotional breakdown</div>
+
+          <div class="bar-row">
+            <div class="bar-hdr">
+              <span class="bname">Positivity</span>
+              <span class="bpct" id="pp">0%</span>
+            </div>
+            <div class="track"><div class="fill fp" id="pb"></div></div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-hdr">
+              <span class="bname">Negativity</span>
+              <span class="bpct" id="np">0%</span>
+            </div>
+            <div class="track"><div class="fill fn" id="nb"></div></div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-hdr">
+              <span class="bname">Neutrality</span>
+              <span class="bpct" id="up">0%</span>
+            </div>
+            <div class="track"><div class="fill fu" id="ub"></div></div>
+          </div>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="mgrid">
+          <div class="mc">
+            <div class="mv" id="mint">—</div>
+            <div class="ml">Intensity</div>
+          </div>
+          <div class="mc">
+            <div class="mv" id="mwrd">—</div>
+            <div class="ml">Words</div>
+          </div>
+          <div class="mc">
+            <div class="mv" id="msen">—</div>
+            <div class="ml">Sentences</div>
+          </div>
+        </div>
+
+        <!-- Observations Card -->
+        <div class="icard">
+          <div class="ittl">Observations</div>
+          <div id="ilist"></div>
+        </div>
+
+      </div><!-- /results -->
+
+      <footer class="footer">Sentilytics · Powered by Claude</footer>
+
+    </main>
+  </div>
+
+  <!-- App Logic -->
+  <script src="app.js"></script>
+
+</body>
+</html>
